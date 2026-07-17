@@ -1,0 +1,33 @@
+<% if flash[:alert] %>
+  <p class="alert">
+    <%= flash[:alert] %>
+  </p>
+<% end %>
+
+<%= form_with model: @user do |form| %>
+    <%= form.label "Username:" %>
+    <br>
+    <%= form.text_field :username, placeholder: "Username"%>
+    <br>
+    <br>
+
+    <%= form.label "Email:"%>
+    <br>
+    <%= form.email_field :email_address, placeholder: "Insira seu Email" %>
+    <br>
+    <br>
+
+    <%= form.label "Password:" %>
+    <br>
+    <%= form.password_field :password, placeholder: "Insira sua senha" %>
+    <br>
+    <br>
+
+    <%= form.label "Password confimation:" %>
+    <br>
+    <%= form.password_field :password_confirmation, placeholder: "Confirme sua senha" %>
+    <br>
+    <br>
+
+    <%= form.submit "Criar Usuario"%>
+<% end %>
