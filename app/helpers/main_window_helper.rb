@@ -1,0 +1,2 @@
+module MainWindowHelper
+end
