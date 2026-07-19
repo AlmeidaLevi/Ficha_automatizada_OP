@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :characters, except: :show
   resource :session
   resources :passwords, param: :token
   resources :users
@@ -13,5 +14,5 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   # Defines the root path route ("/")
-  root "main_window#index"
+  root "characters#index"
 end
