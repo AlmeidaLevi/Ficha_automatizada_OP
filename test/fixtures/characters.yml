@@ -1,0 +1,39 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  origin: MyString
+  character_class: MyString
+  archetype: MyString
+  current_pv: 1
+  current_pe: 1
+  current_sanity: 1
+  nex: 1
+  patent: MyString
+  prestige_points: 1
+  element_affinity: MyString
+  user: one
+  for: 1
+  agi: 1
+  int: 1
+  pre: 1
+  vig: 1
+
+two:
+  name: MyString
+  origin: MyString
+  character_class: MyString
+  archetype: MyString
+  current_pv: 1
+  current_pe: 1
+  current_sanity: 1
+  nex: 1
+  patent: MyString
+  prestige_points: 1
+  element_affinity: MyString
+  user: two
+  for: 1
+  agi: 1
+  int: 1
+  pre: 1
+  vig: 1

@@ -1,0 +1,97 @@
+<%= form_with(model: character) do |form| %>
+  <% if character.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+        <% character.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :origin, style: "display: block" %>
+    <%= form.text_field :origin %>
+  </div>
+
+  <div>
+    <%= form.label :character_class, style: "display: block" %>
+    <%= form.text_field :character_class %>
+  </div>
+
+  <div>
+    <%= form.label :archetype, style: "display: block" %>
+    <%= form.text_field :archetype %>
+  </div>
+
+  <div>
+    <%= form.label :current_pv, style: "display: block" %>
+    <%= form.number_field :current_pv %>
+  </div>
+
+  <div>
+    <%= form.label :current_pe, style: "display: block" %>
+    <%= form.number_field :current_pe %>
+  </div>
+
+  <div>
+    <%= form.label :current_sanity, style: "display: block" %>
+    <%= form.number_field :current_sanity %>
+  </div>
+
+  <div>
+    <%= form.label :nex, style: "display: block" %>
+    <%= form.number_field :nex, min: 0, max: 99 %>
+  </div>
+
+  <div>
+    <%= form.label :patent, style: "display: block" %>
+    <%= form.text_field :patent %>
+  </div>
+
+  <div>
+    <%= form.label :prestige_points, style: "display: block" %>
+    <%= form.number_field :prestige_points %>
+  </div>
+
+  <div>
+    <%= form.label :element_affinity, style: "display: block" %>
+    <%= form.text_field :element_affinity %>
+  </div>
+
+  <div>
+    <%= form.label :for, style: "display: block" %>
+    <%= form.number_field :for, min: 0, max: @character.max_attribute_points %>
+  </div>
+
+  <div>
+    <%= form.label :agi, style: "display: block" %>
+    <%= form.number_field :agi, min: 0, max: @character.max_attribute_points %>
+  </div>
+
+  <div>
+    <%= form.label :int, style: "display: block" %>
+    <%= form.number_field :int, min: 0, max: @character.max_attribute_points%>
+  </div>
+
+  <div>
+    <%= form.label :pre, style: "display: block" %>
+    <%= form.number_field :pre, min: 0, max: @character.max_attribute_points %>
+  </div>
+
+  <div>
+    <%= form.label :vig, style: "display: block" %>
+    <%= form.number_field :vig, min: 0, max: @character.max_attribute_points %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -10,9 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_17_202641) do
+ActiveRecord::Schema[8.1].define(version: 2026_07_17_223349) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "characters", force: :cascade do |t|
+    t.integer "agi", default: 0, null: false
+    t.string "archetype", null: false
+    t.string "character_class", null: false
+    t.datetime "created_at", null: false
+    t.integer "current_pe", default: 0, null: false
+    t.integer "current_pv", default: 0, null: false
+    t.integer "current_sanity", default: 0, null: false
+    t.string "element_affinity"
+    t.integer "for", default: 0, null: false
+    t.integer "int", default: 0, null: false
+    t.string "name", null: false
+    t.integer "nex", default: 0, null: false
+    t.string "origin", null: false
+    t.string "patent"
+    t.integer "pre", default: 0, null: false
+    t.integer "prestige_points", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.integer "vig", default: 0, null: false
+    t.index ["user_id"], name: "index_characters_on_user_id"
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -32,5 +55,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_17_202641) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "characters", "users"
   add_foreign_key "sessions", "users"
 end
