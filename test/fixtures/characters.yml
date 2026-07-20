@@ -2,7 +2,7 @@
 
 one:
   name: MyString
-  origin: MyString
+  origin: academico
   character_class: MyString
   archetype: MyString
   current_pv: 1
@@ -21,7 +21,7 @@ one:
 
 two:
   name: MyString
-  origin: MyString
+  origin: agente_de_saude
   character_class: MyString
   archetype: MyString
   current_pv: 1

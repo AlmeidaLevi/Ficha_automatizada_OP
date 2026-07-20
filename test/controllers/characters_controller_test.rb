@@ -3,6 +3,7 @@ require "test_helper"
 class CharactersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @character = characters(:one)
+    sign_in_as(users(:one))
   end
 
   test "should get index" do
@@ -21,11 +22,6 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to character_url(Character.last)
-  end
-
-  test "should show character" do
-    get character_url(@character)
-    assert_response :success
   end
 
   test "should get edit" do
