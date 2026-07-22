@@ -18,7 +18,34 @@
 
   <div>
     <%= form.label :origin, style: "display: block" %>
-    <%= form.text_field :origin %>
+    <%= form.select :origin, [
+    [ "Acadêmico", "academico"],
+    [ "Agente de saúde", "agente_de_saude"],
+    [ "Amnésico", "amnesico"],
+    [ "Artista", "artista"],
+    [ "Atleta", "atleta"],
+    [ "Chef", "chef"],
+    [ "Criminoso", "criminoso"],
+    [ "Cultista arrependido", "cultista_arrependido"],
+    [ "Desgarrado", "desgarrado"],
+    [ "Engenheiro", "engenheiro"],
+    [ "Executivo", "executivo"],
+    [ "Investigador", "investigador"],
+    [ "Lutado", "lutador"],
+    [ "Magnata", "magnata"],
+    [ "Mercenário", "mercenario"],
+    [ "Militar", "militar"],
+    [ "Operário", "operario"],
+    [ "Policial", "policial"],
+    [ "Religioso", "religioso"],
+    [ "Servidor público", "servidor_publico"],
+    [ "Teórico da conspiração", "teorico_da_conspiracao"],
+    [ "T.I", "ti"],
+    [ "Trabalhador rural", "trabalhador_rural"],
+    [ "Trambiqueiro", "trambiqueiro"],
+    [ "Universitário", "universitario"],
+    [ "Vítima", "vitima"]
+    ] %>
   </div>
 
   <div>
