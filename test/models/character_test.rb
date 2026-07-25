@@ -4,4 +4,12 @@ class CharacterTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
+
+  test "Invalid Origin" do
+    character = characters(:one)
+    character.origin = "Non existent Origin"
+
+    assert_not character.valid?
+    assert_includes character.errors[:origin], "is not included in the list"
+  end
 end

@@ -36,5 +36,5 @@ class Character < ApplicationRecord
     trambiqueiro: "trambiqueiro",
     universitario: "universitario",
     vitima: "vitima"
-  }
+  }, validate: true
 end
