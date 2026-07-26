@@ -26,4 +26,17 @@ class CharacterTest < ActiveSupport::TestCase
       character.archetype = "Non existent archetype"
     end
   end
+
+  test "Archetype not matches Character_class" do
+    character = characters(:atirador_de_elite)
+    character.archetype = "aniquilador"
+    assert_not character.valid?
+    assert_includes character.errors[:archetype], "is not valid for #{character.character_class}"
+  end
+
+  test "Archetype matches character_class" do
+    character = characters(:atirador_de_elite)
+    character.archetype = "infiltrador"
+    assert character.valid?
+  end
 end
