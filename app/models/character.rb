@@ -37,4 +37,10 @@ class Character < ApplicationRecord
     universitario: "universitario",
     vitima: "vitima"
   }, validate: true
+
+  enum :character_class, {
+    combatente: "combatente",
+    ocultista: "ocultista",
+    especialista: "especialista"
+  }, validate: true
 end
