@@ -12,4 +12,12 @@ class CharacterTest < ActiveSupport::TestCase
     assert_not character.valid?
     assert_includes character.errors[:origin], "is not included in the list"
   end
+
+  test "Invalid character_class" do
+    character = characters(:one)
+    character.character_class = "Non existent character_class"
+
+    assert_not character.valid?
+    assert_includes character.errors[:character_class], "is not included in the list"
+  end
 end
