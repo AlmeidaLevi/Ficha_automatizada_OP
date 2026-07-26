@@ -37,3 +37,22 @@ two:
   int: 1
   pre: 1
   vig: 1
+
+atirador_de_elite:
+  name: Especialista
+  origin: ti
+  character_class: especialista
+  archetype: atirador_de_elite
+  current_pv: 1
+  current_pe: 1
+  current_sanity: 1
+  nex: 1
+  patent: agente_de_elite
+  prestige_points: 1
+  element_affinity: energia
+  user: two
+  for: 1
+  agi: 1
+  int: 1
+  pre: 1
+  vig: 1
