@@ -3,7 +3,7 @@
 one:
   name: MyString
   origin: academico
-  character_class: MyString
+  character_class: combatente
   archetype: MyString
   current_pv: 1
   current_pe: 1
@@ -22,7 +22,7 @@ one:
 two:
   name: MyString
   origin: agente_de_saude
-  character_class: MyString
+  character_class: ocultista
   archetype: MyString
   current_pv: 1
   current_pe: 1
