@@ -4,14 +4,14 @@ one:
   name: MyString
   origin: academico
   character_class: combatente
-  archetype: MyString
+  archetype: tropa_de_choque
   current_pv: 1
   current_pe: 1
   current_sanity: 1
   nex: 1
-  patent: MyString
+  patent: recruta
   prestige_points: 1
-  element_affinity: MyString
+  element_affinity: conhecimento
   user: one
   for: 1
   agi: 1
@@ -23,14 +23,14 @@ two:
   name: MyString
   origin: agente_de_saude
   character_class: ocultista
-  archetype: MyString
+  archetype: lamina_paranormal
   current_pv: 1
   current_pe: 1
   current_sanity: 1
   nex: 1
-  patent: MyString
+  patent: agente_de_elite
   prestige_points: 1
-  element_affinity: MyString
+  element_affinity: energia
   user: two
   for: 1
   agi: 1
