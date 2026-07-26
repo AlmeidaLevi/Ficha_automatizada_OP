@@ -18,12 +18,43 @@
 
   <div>
     <%= form.label :origin, style: "display: block" %>
-    <%= form.text_field :origin %>
+    <%= form.select :origin, [
+      ["Acadêmico", "academico"],
+      ["Agente de Saúde", "agente_de_saude"],
+      ["Amnésico", "amnesico"],
+      ["Artista", "artista"],
+      ["Atleta", "atleta"],
+      ["Chef", "chef"],
+      ["Criminoso", "criminoso"],
+      ["Cultista Arrependido", "cultista_arrependido"],
+      ["Desgarrado", "desgarrado"],
+      ["Engenheiro", "engenheiro"],
+      ["Executivo", "executivo"],
+      ["Investigador", "investigador"],
+      ["Lutador", "lutador"],
+      ["Magnata", "magnata"],
+      ["Mercenário", "mercenario"],
+      ["Militar", "militar"],
+      ["Operário", "operario"],
+      ["Policial", "policial"],
+      ["Religioso", "religioso"],
+      ["Servidor Público", "servidor_publico"],
+      ["Teórico da Conspiração", "teorico_da_conspiracao"],
+      ["T.I.", "ti"],
+      ["Trabalhador Rural", "trabalhador_rural"],
+      ["Trambiqueiro", "trambiqueiro"],
+      ["Universitário", "universitario"],
+      ["Vítima", "vitima"]
+    ] %>
   </div>
 
   <div>
     <%= form.label :character_class, style: "display: block" %>
-    <%= form.text_field :character_class %>
+    <%= form.select :character_class, [
+      ["Combatente", "combatente"],
+      ["Especialista", "especialista"],
+      ["Ocultista", "ocultista"]
+    ] %>
   </div>
 
   <div>
