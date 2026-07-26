@@ -64,8 +64,8 @@ class Character < ApplicationRecord
 
   ARCHETYPES_BY_CLASS = {
     "combatente" => %w[aniquilador combatente_de_campo guerreiro operacoes_especiais tropa_de_choque],
-    "ocultista" => %w[atirador_de_elite infiltrador medico_de_campo negociador tecnico],
-    "especialista" => %w[conduite flagelador graduado intuitivo lamina_paranormal]
+    "ocultista" => %w[conduite flagelador graduado intuitivo lamina_paranormal],
+    "especialista" => %w[atirador_de_elite infiltrador medico_de_campo negociador tecnico]
   }.freeze
   validate :archetype_matches_character_class
 
