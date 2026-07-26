@@ -15,10 +15,9 @@ class CharacterTest < ActiveSupport::TestCase
 
   test "Invalid character_class" do
     character = characters(:one)
-    character.character_class = "Non existent character_class"
-
-    assert_not character.valid?
-    assert_includes character.errors[:character_class], "is not included in the list"
+    assert_raises(ArgumentError) do
+      character.archetype = "Non existent character_class"
+    end
   end
 
   test "Invalid archetype raises an error" do
