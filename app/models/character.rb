@@ -43,4 +43,39 @@ class Character < ApplicationRecord
     ocultista: "ocultista",
     especialista: "especialista"
   }, validate: true
+
+  enum :archetype, {
+    aniquilador: "aniquilador",
+    combatente_de_campo: "combatente_de_campo",
+    guerreiro: "guerreiro",
+    operacoes_especiais: "operacoes_especiais",
+    tropa_de_choque: "tropa_de_choque",
+    atirador_de_elite: "atirador_de_elite",
+    infiltrador: "infiltrador",
+    medico_de_campo: "medico_de_campo",
+    negociador: "negociador",
+    tecnico: "tecnico",
+    conduite: "conduite",
+    flagelador: "flagelador",
+    graduado: "graduado",
+    intuitivo: "intuitivo",
+    lamina_paranormal: "lamina_paranormal"
+  }
+
+  ARCHETYPES_BY_CLASS = {
+    "combatente" => %w[aniquilador combatente_de_campo guerreiro operacoes_especiais tropa_de_choque],
+    "ocultista" => %w[atirador_de_elite infiltrador medico_de_campo negociador tecnico],
+    "especialista" => %w[conduite flagelador graduado intuitivo lamina_paranormal]
+  }.freeze
+  validate :archetype_matches_character_class
+
+  private
+
+    def archetype_matches_character_class
+      return if archetype.blank? || character_class.blank?
+
+      unless ARCHETYPES_BY_CLASS[character_class].include?(archetype)
+        errors.add(:archetype, "is not valid for #{character_class}")
+      end
+    end
 end
