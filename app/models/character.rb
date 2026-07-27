@@ -1,13 +1,9 @@
 class Character < ApplicationRecord
-  belongs_to :user
-
-  def max_attribute_points
-    if nex < 20
-      3
-    else
-      5
-    end
-  end
+  ARCHETYPES_BY_CLASS = {
+    "combatente" => %w[aniquilador combatente_de_campo guerreiro operacoes_especiais tropa_de_choque],
+    "ocultista" => %w[conduite flagelador graduado intuitivo lamina_paranormal],
+    "especialista" => %w[atirador_de_elite infiltrador medico_de_campo negociador tecnico]
+  }.freeze
 
   enum :origin, {
     academico: "academico",
@@ -62,12 +58,17 @@ class Character < ApplicationRecord
     lamina_paranormal: "lamina_paranormal"
   }
 
-  ARCHETYPES_BY_CLASS = {
-    "combatente" => %w[aniquilador combatente_de_campo guerreiro operacoes_especiais tropa_de_choque],
-    "ocultista" => %w[conduite flagelador graduado intuitivo lamina_paranormal],
-    "especialista" => %w[atirador_de_elite infiltrador medico_de_campo negociador tecnico]
-  }.freeze
+  belongs_to :user
+
   validate :archetype_matches_character_class
+
+  def max_attribute_points
+    if nex < 20
+      3
+    else
+      5
+    end
+  end
 
   private
 
