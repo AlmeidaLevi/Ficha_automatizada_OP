@@ -12,12 +12,12 @@
   <% end %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
+    <%= form.label "Nome do personagem:", style: "display: block" %>
     <%= form.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :origin, style: "display: block" %>
+    <%= form.label "Origem:", style: "display: block" %>
     <%= form.select :origin, [
       ["Acadêmico", "academico"],
       ["Agente de Saúde", "agente_de_saude"],
@@ -50,7 +50,7 @@
 
   <div data-controller="archetype-selector">
     <div>
-      <%= form.label :character_class, style: "display: block" %>
+      <%= form.label "Classe:", style: "display: block" %>
       <%= form.select :character_class, [
         ["Combatente", "combatente"],
         ["Especialista", "especialista"],
@@ -65,7 +65,7 @@
     </div>
 
     <div>
-      <%= form.label :archetype, style: "display: block" %>
+      <%= form.label "Trilha:", style: "display: block" %>
       <%= form.select :archetype,
         [],
         {},
@@ -77,62 +77,62 @@
   </div>
 
   <div>
-    <%= form.label :current_pv, style: "display: block" %>
+    <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.number_field :current_pv %>
   </div>
 
   <div>
-    <%= form.label :current_pe, style: "display: block" %>
+    <%= form.label "Pontos de Esforço: ", style: "display: block" %>
     <%= form.number_field :current_pe %>
   </div>
 
   <div>
-    <%= form.label :current_sanity, style: "display: block" %>
+    <%= form.label "Sanidade: ", style: "display: block" %>
     <%= form.number_field :current_sanity %>
   </div>
 
   <div>
-    <%= form.label :nex, style: "display: block" %>
+    <%= form.label "NEX (Nivel de Exposição):", style: "display: block" %>
     <%= form.number_field :nex, min: 0, max: 99 %>
   </div>
 
   <div>
-    <%= form.label :patent, style: "display: block" %>
+    <%= form.label "Patente:", style: "display: block" %>
     <%= form.text_field :patent %>
   </div>
 
   <div>
-    <%= form.label :prestige_points, style: "display: block" %>
+    <%= form.label "Pontos de prestigio:", style: "display: block" %>
     <%= form.number_field :prestige_points %>
   </div>
 
   <div>
-    <%= form.label :element_affinity, style: "display: block" %>
+    <%= form.label "Elemento de afinidade:", style: "display: block" %>
     <%= form.text_field :element_affinity %>
   </div>
 
   <div>
-    <%= form.label :for, style: "display: block" %>
+    <%= form.label "FOR (Força):", style: "display: block" %>
     <%= form.number_field :for, min: 0, max: @character.max_attribute_points %>
   </div>
 
   <div>
-    <%= form.label :agi, style: "display: block" %>
+    <%= form.label "AGI (Agilidade):", style: "display: block" %>
     <%= form.number_field :agi, min: 0, max: @character.max_attribute_points %>
   </div>
 
   <div>
-    <%= form.label :int, style: "display: block" %>
+    <%= form.label "INT (Inteligencia):", style: "display: block" %>
     <%= form.number_field :int, min: 0, max: @character.max_attribute_points%>
   </div>
 
   <div>
-    <%= form.label :pre, style: "display: block" %>
+    <%= form.label "PRE (Presença):", style: "display: block" %>
     <%= form.number_field :pre, min: 0, max: @character.max_attribute_points %>
   </div>
 
   <div>
-    <%= form.label :vig, style: "display: block" %>
+    <%= form.label "VIG (Vigor):", style: "display: block" %>
     <%= form.number_field :vig, min: 0, max: @character.max_attribute_points %>
   </div>
 
