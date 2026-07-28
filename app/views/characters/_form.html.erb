@@ -48,18 +48,32 @@
     ] %>
   </div>
 
-  <div>
-    <%= form.label :character_class, style: "display: block" %>
-    <%= form.select :character_class, [
-      ["Combatente", "combatente"],
-      ["Especialista", "especialista"],
-      ["Ocultista", "ocultista"]
-    ] %>
-  </div>
+  <div data-controller="archetype-selector">
+    <div>
+      <%= form.label :character_class, style: "display: block" %>
+      <%= form.select :character_class, [
+        ["Combatente", "combatente"],
+        ["Especialista", "especialista"],
+        ["Ocultista", "ocultista"]
+        ],
+        {},
+        data: {
+          archetype_selector_target: "characterClass",
+          action: "change->archetype-selector#updateArchetype"
+        }
+      %>
+    </div>
 
-  <div>
-    <%= form.label :archetype, style: "display: block" %>
-    <%= form.text_field :archetype %>
+    <div>
+      <%= form.label :archetype, style: "display: block" %>
+      <%= form.select :archetype,
+        [],
+        {},
+        data: {
+          archetype_selector_target: "archetype"
+        }
+      %>
+    </div>
   </div>
 
   <div>
