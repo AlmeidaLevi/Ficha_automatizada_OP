@@ -1,6 +1,26 @@
 require "test_helper"
 
 class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
+  character_fields = {
+            name: "Test",
+            origin: "academico",
+            character_class: "combatente",
+            archetype: "aniquilador",
+            current_pv: 0,
+            current_pe: 0,
+            current_sanity: 0,
+            nex: 0,
+            patent: "recruta",
+            prestige_points: 0,
+            element_affiniry: "conhecimento",
+            user_id: 1,
+            for: 1,
+            agi: 1,
+            int: 1,
+            pre: 1,
+            vig: 1
+          }
+
   PROTECTED_ENDPOINTS = [
     {
       signature: "GET characters#index",
@@ -28,25 +48,7 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
       path: ->(test) { test.characters_path },
       params: ->(test) {
         {
-          character: {
-            name: "Test",
-            origin: "academico",
-            character_class: "combatente",
-            archetype: "aniquilador",
-            current_pv: 0,
-            current_pe: 0,
-            current_sanity: 0,
-            nex: 0,
-            patent: "recruta",
-            prestige_points: 0,
-            element_affiniry: "conhecimento",
-            user_id: test.characters(:one).user_id,
-            for: 1,
-            agi: 1,
-            int: 1,
-            pre: 1,
-            vig: 1
-          }
+          character: character_fields
         }
       }
     },
@@ -56,25 +58,7 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
       path: ->(test) { test.character_path(test.characters(:one)) },
       params: ->(test) {
         {
-          character: {
-            name: "Test",
-            origin: "academico",
-            character_class: "combatente",
-            archetype: "aniquilador",
-            current_pv: 0,
-            current_pe: 0,
-            current_sanity: 0,
-            nex: 0,
-            patent: "recruta",
-            prestige_points: 0,
-            element_affiniry: "conhecimento",
-            user_id: test.characters(:one).user_id,
-            for: 1,
-            agi: 1,
-            int: 1,
-            pre: 1,
-            vig: 1
-          }
+          character: character_fields
         }
       }
     },
@@ -85,25 +69,7 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
       path: ->(test) { test.character_path(test.characters(:one)) },
       params: ->(test) {
         {
-          character: {
-            name: "Test",
-            origin: "academico",
-            character_class: "combatente",
-            archetype: "aniquilador",
-            current_pv: 0,
-            current_pe: 0,
-            current_sanity: 0,
-            nex: 0,
-            patent: "recruta",
-            prestige_points: 0,
-            element_affiniry: "conhecimento",
-            user_id: test.characters(:one).user_id,
-            for: 1,
-            agi: 1,
-            int: 1,
-            pre: 1,
-            vig: 1
-          }
+          character: character_fields
         }
       }
     },
