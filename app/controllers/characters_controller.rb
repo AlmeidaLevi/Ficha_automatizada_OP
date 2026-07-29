@@ -1,13 +1,9 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: %i[ show edit update destroy ]
+  before_action :set_character, only: %i[ edit update destroy ]
 
   # GET /characters or /characters.json
   def index
     @characters = Current.user.characters
-  end
-
-  # GET /characters/1 or /characters/1.json
-  def show
   end
 
   # GET /characters/new
