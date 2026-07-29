@@ -82,6 +82,11 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
           id: test.characters(:one).id
         }
       }
+    },
+    {
+      signature: "DELETE session#destroy",
+      verb: :delete,
+      path: ->(test) { test.session_path }
     }
   ]
 
