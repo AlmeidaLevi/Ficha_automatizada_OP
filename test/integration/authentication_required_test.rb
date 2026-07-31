@@ -27,6 +27,18 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
             vig: 1
           }
 
+  PUBLIC_SIGNATURES = [
+    "GET sessions#new",
+    "POST sessions#create",
+    "GET passwords#new",
+    "POST passwords#create",
+    "GET passwords#edit",
+    "PUT passwords#update",
+    "PATCH passwords#update",
+    "POST users#create",
+    "GET users#new"
+  ].freeze
+
   PROTECTED_ENDPOINTS = [
     {
       signature: "GET characters#index",
