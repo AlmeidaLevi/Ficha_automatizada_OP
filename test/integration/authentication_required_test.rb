@@ -164,6 +164,14 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "All endpoints are protected ou public" do
+    signatures = all_signatures
+    signatures -= protected_signatures
+    signatures -= PUBLIC_SIGNATURES
+
+    assert_empty signatures, "## Unclassified signatures: #{signatures.join(";\n")}"
+  end
+
   private
 
     def all_signatures
