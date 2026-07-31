@@ -1,6 +1,12 @@
 require "test_helper"
 
 class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
+  user_fields = {
+    username: "one",
+    email_address: "one@example.com",
+    password_digest: "senha"
+  }
+
   character_fields = {
             name: "Test",
             origin: "academico",
