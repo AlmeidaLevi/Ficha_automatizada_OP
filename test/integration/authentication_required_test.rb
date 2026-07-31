@@ -163,4 +163,29 @@ class AuthenticationRequiredTest < ActionDispatch::IntegrationTest
       assert_redirected_to new_session_path
     end
   end
+
+  private
+
+    def all_signatures
+      Rails.application.routes.routes.filter_map do |route|
+        controller = route.defaults[:controller]&.to_s
+        action = route.defaults[:action]&.to_s
+        verb = route.verb.to_s
+        next if controller.nil?
+        next if controller.start_with?("rails")
+        next if controller.start_with?("turbo")
+        next if controller.start_with?("action_mailbox")
+        next if controller.start_with?("active_storage")
+        next if action.nil?
+        next if verb.nil?
+
+        "#{verb} #{controller}##{action}"
+      end
+    end
+
+    def protected_signatures
+      PROTECTED_ENDPOINTS.map do |endpoint|
+        endpoint[:signature]
+      end
+    end
 end
