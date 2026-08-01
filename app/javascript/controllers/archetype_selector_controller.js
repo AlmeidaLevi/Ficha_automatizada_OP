@@ -43,4 +43,7 @@ export default class extends Controller {
 
   }
 
+  notifyClassChange(){
+    this.dispatch("changed")
+  }
 }
