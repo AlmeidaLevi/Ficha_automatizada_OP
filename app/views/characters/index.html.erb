@@ -7,10 +7,11 @@
 <div id="characters">
   <% @characters.each do |character| %>
     <%= render character %>
+    <%= link_to "Show/edit this character", edit_character_path(character) %>
     <p>
     </p>
   <% end %>
 </div>
 
 <%= link_to "New character", new_character_path %>
-<%= button_to "log out", session_path, method: :delete%>
+<%= button_to "log out", session_path, method: :delete %>
