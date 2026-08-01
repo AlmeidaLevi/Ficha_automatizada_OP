@@ -59,7 +59,10 @@
         {},
         data: {
           archetype_selector_target: "characterClass",
-          action: "change->archetype-selector#updateArchetype"
+          action: "
+                  change->archetype-selector#updateArchetype
+                  change->archetype-selector#notifyClassChange
+                  "
         }
       %>
     </div>
@@ -76,24 +79,40 @@
     </div>
   </div>
 
+<div data-controller="number-fields">
   <div>
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
-    <%= form.number_field :current_pv %>
+    <%= form.hidden_field :current_pv, min: 0,
+      data: {
+        number_fields_limit_target: "PV",
+        action: "archetype-selector:changed@document->number-fields#updateMaxPV"
+      }
+    %>
+    <button type="button" data-action="click->number-fields#decrementPV">−</button>
+      <span data-number-fields-target="DisplayPV" data-character-current-Pv-value="<%= @character.current_pv %>">
+
+      </span>
+    <button type="button" data-action="click->number-fields#incrementPV">+</button>
   </div>
 
   <div>
     <%= form.label "Pontos de Esforço: ", style: "display: block" %>
-    <%= form.number_field :current_pe %>
+    <%= form.number_field :current_pe, min: 0 %>
   </div>
 
   <div>
     <%= form.label "Sanidade: ", style: "display: block" %>
-    <%= form.number_field :current_sanity %>
+    <%= form.number_field :current_sanity, min: 0 %>
   </div>
 
   <div>
     <%= form.label "NEX (Nivel de Exposição):", style: "display: block" %>
-    <%= form.number_field :nex, min: 0, max: 99 %>
+    <%= form.number_field :nex, min: 0, max: 99,
+      data: {
+        number_fields_target: "NEX",
+        action: "change->number-fields#updateMaxPV"
+      }
+    %>
   </div>
 
   <div>
@@ -113,30 +132,52 @@
 
   <div>
     <%= form.label "FOR (Força):", style: "display: block" %>
-    <%= form.number_field :for, min: 0, max: @character.max_attribute_points %>
+    <%= form.number_field :for, min: 0, max: @character.max_attribute_points,
+      data: {
+        number_fields_target: "FOR",
+      }
+    %>
   </div>
 
   <div>
     <%= form.label "AGI (Agilidade):", style: "display: block" %>
-    <%= form.number_field :agi, min: 0, max: @character.max_attribute_points %>
+    <%= form.number_field :agi, min: 0, max: @character.max_attribute_points,
+      data: {
+        number_fields_target: "AGI"
+      }
+    %>
   </div>
 
   <div>
     <%= form.label "INT (Inteligencia):", style: "display: block" %>
-    <%= form.number_field :int, min: 0, max: @character.max_attribute_points%>
+    <%= form.number_field :int, min: 0, max: @character.max_attribute_points,
+      data: {
+        number_fields_target: "INT"
+      }
+    %>
   </div>
 
   <div>
     <%= form.label "PRE (Presença):", style: "display: block" %>
-    <%= form.number_field :pre, min: 0, max: @character.max_attribute_points %>
+    <%= form.number_field :pre, min: 0, max: @character.max_attribute_points,
+      data: {
+        number_fields_target: "PRE"
+      }
+    %>
   </div>
 
   <div>
     <%= form.label "VIG (Vigor):", style: "display: block" %>
-    <%= form.number_field :vig, min: 0, max: @character.max_attribute_points %>
+    <%= form.number_field :vig, min: 0, max: @character.max_attribute_points,
+      data: {
+        number_fields_target: "VIG",
+        action: "change->number-fields#updateMaxPV"
+      }
+    %>
   </div>
 
   <div>
     <%= form.submit %>
   </div>
+</div>
 <% end %>
