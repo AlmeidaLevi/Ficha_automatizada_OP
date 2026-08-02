@@ -5,9 +5,11 @@ export default class extends Controller {
     static values = {
         currentPv: Number
     }
+
     connect() {
         this.maxPV = 0
         this.currentPV = this.currentPvValue
+        this.PVTarget.value = this.currentPV
         this.class_selector = document.getElementById("character_character_class")
         this.current_class = this.class_selector.value
         this.updateMaxPV()
@@ -32,6 +34,7 @@ export default class extends Controller {
         }
         if(this.currentPV > this.maxPV){
             this.currentPV = this.maxPV
+            this.PVTarget.value = this.currentPV
         }
         this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
     }
@@ -39,6 +42,7 @@ export default class extends Controller {
     incrementPV(){[]
         if (this.currentPV < this.maxPV){
             this.currentPV += 1
+            this.PVTarget.value = this.currentPV
             this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
         }
     }
@@ -46,6 +50,7 @@ export default class extends Controller {
     decrementPV(){
         if(this.currentPV > 0){
             this.currentPV -= 1
+            this.PVTarget.value = this.currentPV
             this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
         }
     }

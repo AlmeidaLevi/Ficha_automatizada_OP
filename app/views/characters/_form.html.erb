@@ -79,17 +79,17 @@
     </div>
   </div>
 
-<div data-controller="number-fields">
+<div data-controller="number-fields" data-number-fields-current-Pv-value="<%= @character.current_pv %>">
   <div>
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.hidden_field :current_pv, min: 0,
       data: {
-        number_fields_limit_target: "PV",
+        number_fields_target: "PV",
         action: "archetype-selector:changed@document->number-fields#updateMaxPV"
       }
     %>
     <button type="button" data-action="click->number-fields#decrementPV">−</button>
-      <span data-number-fields-target="DisplayPV" data-character-current-Pv-value="<%= @character.current_pv %>">
+      <span data-number-fields-target="DisplayPV">
 
       </span>
     <button type="button" data-action="click->number-fields#incrementPV">+</button>
