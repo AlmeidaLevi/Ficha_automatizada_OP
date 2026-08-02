@@ -21,7 +21,7 @@ class CharactersController < ApplicationController
 
     respond_to do |format|
       if @character.save
-        format.html { redirect_to @character, notice: "Character was successfully created." }
+        format.html { redirect_to root_path, notice: "Character was successfully created." }
         format.json { render :show, status: :created, location: @character }
       else
         format.html { render :new, status: :unprocessable_content }
@@ -34,7 +34,7 @@ class CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to @character, notice: "Character was successfully updated.", status: :see_other }
+        format.html { redirect_to root_path, notice: "Character was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @character }
       else
         format.html { render :edit, status: :unprocessable_content }
