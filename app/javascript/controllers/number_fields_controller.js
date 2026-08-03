@@ -85,7 +85,7 @@ export default class extends Controller {
             this.maxPE += Math.floor(nex/5) * (4 + presenca)
         }
         if(this.currentPE > this.maxPE){
-            this.currentPE = this.currentPE
+            this.currentPE = this.maxPE
             this.PETarget.value = this.currentPV
         }
         this.DisplayPETarget.textContent = `${this.currentPE}/${this.maxPE}`
