@@ -79,8 +79,11 @@
     </div>
   </div>
 
-<div data-controller="number-fields" data-number-fields-current-Pv-value="<%= @character.current_pv %>">
-
+<div data-controller="number-fields"
+     data-number-fields-current-Pv-value="<%= @character.current_pv %>"
+     data-number-fields-current-Pe-value="<%= @character.current_pe %>"
+     data-number-fields-current-Sanity-value="<%= @character.current_sanity %>"
+>
   <div>
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.hidden_field :current_pv, min: 0,
@@ -113,7 +116,17 @@
 
   <div>
     <%= form.label "Sanidade: ", style: "display: block" %>
-    <%= form.number_field :current_sanity, min: 0 %>
+    <%= form.hidden_field :current_sanity, min: 0,
+      data: {
+        number_fields_target: "Sanity",
+        action: "archetype-selector:changed@document->number-fields#updateMaxSanity"
+      }
+    %>
+    <button type="button" data-action="click->number-fields#decrementSanity">-</button>
+    <span data-number-fields-target="DisplaySanity">
+
+    </span>
+    <button type="button" data-action="click->number-fields#incrementSanity">+</button>
   </div>
 
   <div>
@@ -124,6 +137,7 @@
         action: "
                 change->number-fields#updateMaxPV
                 change->number-fields#updateMaxPE
+                change->number-fields#updateMaxSanity
                 "
       }
     %>
