@@ -59,12 +59,32 @@ export default class extends Controller {
         }
     }
 
+    increaseFivePV(){
+        if (this.currentPV + 5 <= this.maxPV){
+            this.currentPV += 5
+        }else{
+            this.currentPV = this.maxPV
+        }
+        this.PVTarget.value = this.currentPV
+        this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
+    }
+
     decrementPV(){
         if(this.currentPV > 0){
             this.currentPV -= 1
             this.PVTarget.value = this.currentPV
             this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
         }
+    }
+
+    decreaseFivePV(){
+        if (this.currentPV - 5 >= 0){
+            this.currentPV -= 5
+        }else{
+            this.currentPV = 0
+        }
+        this.PVTarget.value = this.currentPV
+        this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
     }
 
     updateMaxPE(){
@@ -99,12 +119,32 @@ export default class extends Controller {
         }
     }
 
+    increaseFivePE(){
+        if(this.currentPE + 5 <= this.maxPE){
+            this.currentPE += 5
+        }else{
+            this.currentPE = this.maxPE
+        }
+        this.PETarget.value = this.currentPE
+        this.DisplayPETarget.textContent = `${this.currentPE}/${this.maxPE}`
+    }
+
     decrementPE(){
         if(this.currentPE > 0){
             this.currentPE -= 1
             this.PETarget.value = this.currentPE
             this.DisplayPETarget.textContent = `${this.currentPE}/${this.maxPE}`
         }
+    }
+
+    decreaseFivePE(){
+        if(this.currentPE - 5 >= 0){
+            this.currentPE -= 5
+        }else{
+            this.currentPE = 0
+        }
+        this.PETarget.value = this.currentPE
+        this.DisplayPETarget.textContent = `${this.currentPE}/${this.maxPE}`
     }
 
     updateMaxSanity(){
@@ -138,11 +178,31 @@ export default class extends Controller {
         }
     }
 
+    increaseFiveSanity(){
+        if(this.currentSanity + 5 <= this.maxSanity){
+            this.currentSanity += 5
+        }else{
+            this.currentSanity = this.maxSanity
+        }
+        this.SanityTarget.value = this.currentSanity
+        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+    }
+
     decrementSanity(){
         if(this.currentSanity > 0){
             this.currentSanity -= 1
             this.SanityTarget.value = this.currentSanity
             this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
         }
+    }
+
+    decreaseFiveSanity(){
+        if(this.currentSanity - 5 >= 0){
+            this.currentSanity -= 5
+        }else{
+            this.currentSanity = 0
+        }
+        this.SanityTarget.value = this.currentSanity
+        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
     }
 }
