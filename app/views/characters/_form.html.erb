@@ -175,7 +175,8 @@
     <%= form.label "PRE (Presença):", style: "display: block" %>
     <%= form.number_field :pre, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "PRE"
+        number_fields_target: "PRE",
+        action: "change->number-fields#updateMaxPE"
       }
     %>
   </div>
