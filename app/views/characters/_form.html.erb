@@ -92,11 +92,13 @@
         action: "archetype-selector:changed@document->number-fields#updateMaxPV"
       }
     %>
-    <button type="button" data-action="click->number-fields#decrementPV">−</button>
+    <button type="button" data-action="click->number-fields#decreaseFivePV">&lt;&lt;</button>
+    <button type="button" data-action="click->number-fields#decrementPV">&lt;</button>
       <span data-number-fields-target="DisplayPV">
 
       </span>
-    <button type="button" data-action="click->number-fields#incrementPV">+</button>
+    <button type="button" data-action="click->number-fields#incrementPV">&gt;</button>
+    <button type="button" data-action="click->number-fields#increaseFivePV">&gt;&gt;</button>
   </div>
 
   <div>
@@ -107,11 +109,13 @@
         action: "archetype-selector:changed@document->number-fields#updateMaxPE"
       }
     %>
-    <button type="button" data-action="click->number-fields#decrementPE">-</button>
+    <button type="button" data-action="click->number-fields#decreaseFivePE">&lt;&lt;</button>
+    <button type="button" data-action="click->number-fields#decrementPE">&lt;</button>
       <span data-number-fields-target="DisplayPE">
 
       </span>
-    <button type="button" data-action="click->number-fields#incrementPE">+</button>
+    <button type="button" data-action="click->number-fields#incrementPE">&gt;</button>
+    <button type="button" data-action="click->number-fields#increaseFivePE">&gt;&gt;</button>
   </div>
 
   <div>
@@ -122,11 +126,13 @@
         action: "archetype-selector:changed@document->number-fields#updateMaxSanity"
       }
     %>
-    <button type="button" data-action="click->number-fields#decrementSanity">-</button>
+    <button type="button" data-action="click->number-fields#decreaseFiveSanity">&lt;&lt;</button>
+    <button type="button" data-action="click->number-fields#decrementSanity">&lt;</button>
     <span data-number-fields-target="DisplaySanity">
 
     </span>
-    <button type="button" data-action="click->number-fields#incrementSanity">+</button>
+    <button type="button" data-action="click->number-fields#incrementSanity">&gt;</button>
+    <button type="button" data-action="click->number-fields#increaseFiveSanity">&gt;&gt;</button>
   </div>
 
   <div>
