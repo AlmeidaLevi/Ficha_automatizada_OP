@@ -80,6 +80,7 @@
   </div>
 
 <div data-controller="number-fields" data-number-fields-current-Pv-value="<%= @character.current_pv %>">
+
   <div>
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.hidden_field :current_pv, min: 0,
@@ -97,7 +98,17 @@
 
   <div>
     <%= form.label "Pontos de Esforço: ", style: "display: block" %>
-    <%= form.number_field :current_pe, min: 0 %>
+    <%= form.hidden_field :current_pe, min: 0,
+      data: {
+        number_fields_target: "PE",
+        action: "archetype-selector:changed@document->number-fields#updateMaxPE"
+      }
+    %>
+    <button type="button" data-action="click->number-fields#decrementPE">-</button>
+      <span data-number-fields-target="DisplayPE">
+
+      </span>
+    <button type="button" data-action="click->number-fields#incrementPE">+</button>
   </div>
 
   <div>
@@ -110,7 +121,10 @@
     <%= form.number_field :nex, min: 0, max: 99,
       data: {
         number_fields_target: "NEX",
-        action: "change->number-fields#updateMaxPV"
+        action: "
+                change->number-fields#updateMaxPV
+                change->number-fields#updateMaxPE
+                "
       }
     %>
   </div>
@@ -177,7 +191,7 @@
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Salvar" %>
   </div>
 </div>
 <% end %>
