@@ -1,10 +1,11 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["FOR", "AGI", "INT", "PRE", "VIG", "NEX", "PV", "DisplayPV","PE","DisplayPE"]
+    static targets = ["FOR", "AGI", "INT", "PRE", "VIG", "NEX", "PV", "DisplayPV", "PE", "DisplayPE", "Sanity", "DisplaySanity"]
     static values = {
         currentPv: Number,
-        currentPe: Number
+        currentPe: Number,
+        currentSanity: Number
     }
 
     connect() {
@@ -16,9 +17,14 @@ export default class extends Controller {
         this.currentPE = this.currentPeValue
         this.PETarget.value = this.currentPE
 
+        this.maxSanity = 0
+        this.currentSanity = this.currentSanityValue
+        this.SanityTarget.value = this.currentSanity
+
         this.class_selector = document.getElementById("character_character_class")
         this.updateMaxPV()
         this.updateMaxPE()
+        this.updateMaxSanity()
     }
 
     updateMaxPV(){
@@ -98,6 +104,45 @@ export default class extends Controller {
             this.currentPE -= 1
             this.PETarget.value = this.currentPE
             this.DisplayPETarget.textContent = `${this.currentPE}/${this.maxPE}`
+        }
+    }
+
+    updateMaxSanity(){
+        let current_class = this.class_selector.value
+        let nex = Number(this.NEXTarget.value)
+        if(nex == 99){
+            nex += 1
+        }
+        if(current_class == "combatente"){
+            this.maxSanity = 12
+            this.maxSanity += Math.floor(nex/5) * 3
+        }else if(current_class == "especialista"){
+            this.maxSanity = 16
+            this.maxSanity += Math.floor(nex/5) * 4
+        }else if(current_class == "ocultista"){
+            this.maxSanity = 20
+            this.maxSanity += Math.floor(nex/5) * 5
+        }
+        if(this.currentSanity > this.maxSanity){
+            this.currentSanity = this.maxSanity
+            this.SanityTarget.value = this.currentSanity
+        }
+        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+    }
+
+    incrementSanity(){
+        if(this.currentSanity < this.maxSanity){
+            this.currentSanity += 1
+            this.SanityTarget.value = this.currentSanity
+            this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        }
+    }
+
+    decrementSanity(){
+        if(this.currentSanity > 0){
+            this.currentSanity -= 1
+            this.SanityTarget.value = this.currentSanity
+            this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
         }
     }
 }
