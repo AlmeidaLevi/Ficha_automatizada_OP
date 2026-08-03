@@ -21,7 +21,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
       post characters_url, params: { character: { agi: @character.agi, archetype: @character.archetype, character_class: @character.character_class, current_pe: @character.current_pe, current_pv: @character.current_pv, current_sanity: @character.current_sanity, element_affinity: @character.element_affinity, for: @character.for, int: @character.int, name: @character.name, nex: @character.nex, origin: @character.origin, patent: @character.patent, pre: @character.pre, prestige_points: @character.prestige_points, user_id: @character.user_id, vig: @character.vig } }
     end
 
-    assert_redirected_to character_url(Character.last)
+    assert_redirected_to root_path
   end
 
   test "should get edit" do
@@ -31,7 +31,7 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
 
   test "should update character" do
     patch character_url(@character), params: { character: { agi: @character.agi, archetype: @character.archetype, character_class: @character.character_class, current_pe: @character.current_pe, current_pv: @character.current_pv, current_sanity: @character.current_sanity, element_affinity: @character.element_affinity, for: @character.for, int: @character.int, name: @character.name, nex: @character.nex, origin: @character.origin, patent: @character.patent, pre: @character.pre, prestige_points: @character.prestige_points, user_id: @character.user_id, vig: @character.vig } }
-    assert_redirected_to character_url(@character)
+    assert_redirected_to root_path
   end
 
   test "should destroy character" do
