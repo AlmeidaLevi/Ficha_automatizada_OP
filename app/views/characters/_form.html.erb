@@ -137,9 +137,9 @@
 
   <div>
     <%= form.label "NEX (Nivel de Exposição):", style: "display: block" %>
-    <%= form.number_field :nex, min: 0, max: 99,
+    <%= form.hidden_field :nex, min: 0, max: 99,
       data: {
-        number_fields_target: "NEX",
+        number_fields_target: "Nex",
         action: "
                 change->number-fields#updateMaxPV
                 change->number-fields#updateMaxPE
@@ -147,6 +147,13 @@
                 "
       }
     %>
+    <button type="button" data-action="click->number-fields#decreaseFiveNex">&lt;&lt;</button>
+    <button type="button" data-action="click->number-fields#decrementNex">&lt;</button>
+    <span data-number-fields-target="DisplayNex">
+
+    </span>
+    <button type="button" data-action="click->number-fields#incrementNex">&gt;</button>
+    <button type="button" data-action="click->number-fields#increaseFiveNex">&gt;&gt;</button>
   </div>
 
   <div>
