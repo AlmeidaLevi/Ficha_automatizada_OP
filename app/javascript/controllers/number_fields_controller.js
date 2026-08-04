@@ -1,11 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["FOR", "AGI", "INT", "PRE", "VIG", "NEX", "PV", "DisplayPV", "PE", "DisplayPE", "Sanity", "DisplaySanity"]
+    static targets = ["FOR", "AGI", "INT", "PRE", "VIG", "Nex", "DisplayNex", "PV", "DisplayPV", "PE", "DisplayPE", "Sanity", "DisplaySanity"]
     static values = {
         currentPv: Number,
         currentPe: Number,
-        currentSanity: Number
+        currentSanity: Number,
+        currentNex: Number
     }
 
     connect() {
@@ -21,6 +22,11 @@ export default class extends Controller {
         this.currentSanity = this.currentSanityValue
         this.SanityTarget.value = this.currentSanity
 
+        this.maxNex = 99
+        this.currentNex = this.currentNexValue
+        this.NexTarget.value = this.currentNex
+        this.DisplayNexTarget.textContent = `${this.currentNex}/${this.maxNex}`
+
         this.class_selector = document.getElementById("character_character_class")
         this.updateMaxPV()
         this.updateMaxPE()
@@ -30,7 +36,7 @@ export default class extends Controller {
     updateMaxPV(){
         let current_class = this.class_selector.value
         let vigor = Number(this.VIGTarget.value)
-        let nex = Number(this.NEXTarget.value)
+        let nex = Number(this.NexTarget.value)
         if (nex == 99){
             nex += 1
         }
@@ -51,7 +57,7 @@ export default class extends Controller {
         this.DisplayPVTarget.textContent = `${this.currentPV}/${this.maxPV}`
     }
 
-    incrementPV(){[]
+    incrementPV(){
         if (this.currentPV < this.maxPV){
             this.currentPV += 1
             this.PVTarget.value = this.currentPV
@@ -90,7 +96,7 @@ export default class extends Controller {
     updateMaxPE(){
         let current_class = this.class_selector.value
         let presenca = Number(this.PRETarget.value)
-        let nex = Number(this.NEXTarget.value)
+        let nex = Number(this.NexTarget.value)
         if(nex == 99){
             nex += 1
         }
@@ -149,7 +155,7 @@ export default class extends Controller {
 
     updateMaxSanity(){
         let current_class = this.class_selector.value
-        let nex = Number(this.NEXTarget.value)
+        let nex = Number(this.NexTarget.value)
         if(nex == 99){
             nex += 1
         }
@@ -204,5 +210,41 @@ export default class extends Controller {
         }
         this.SanityTarget.value = this.currentSanity
         this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+    }
+
+    incrementNex(){
+        if(this.currentNex < this.maxNex){
+            this.currentNex += 1
+            this.NexTarget.value = this.currentNex
+            this.DisplayNexTarget.textContent = `${this.currentNex}/${this.maxNex}`
+        }
+    }
+
+    increaseFiveNex(){
+        if(this.currentNex + 5 <= this.maxNex){
+            this.currentNex += 5
+        }else{
+            this.currentNex = this.maxNex
+        }
+        this.NexTarget.value = this.currentNex
+        this.DisplayNexTarget.textContent = `${this.currentNex}/${this.maxNex}`
+    }
+
+    decrementNex(){
+        if(this.currentNex > 0){
+            this.currentNex -= 1
+            this.NexTarget.value = this.currentNex
+            this.DisplayNexTarget.textContent = `${this.currentNex}/${this.maxNex}`
+        }
+    }
+
+    decreaseFiveNex(){
+        if(this.currentNex - 5 >= 0){
+            this.currentNex -= 5
+        }else{
+            this.currentNex = 0
+        }
+        this.NexTarget.value = this.currentNex
+        this.DisplayNexTarget.textContent = `${this.currentNex}/${this.maxNex}`
     }
 }
