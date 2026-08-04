@@ -8,7 +8,7 @@ class CreateCharacters < ActiveRecord::Migration[8.1]
       t.integer :current_pv, null: false, default: 0
       t.integer :current_pe, null: false, default: 0
       t.integer :current_sanity, null: false, default: 0
-      t.integer :nex, null: false, default: 0
+      t.integer :nex, null: false, default: 5
       t.string :patent
       t.integer :prestige_points, null: false, default: 0
       t.string :element_affinity

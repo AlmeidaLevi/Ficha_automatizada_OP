@@ -26,7 +26,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_17_223349) do
     t.integer "for", default: 0, null: false
     t.integer "int", default: 0, null: false
     t.string "name", null: false
-    t.integer "nex", default: 0, null: false
+    t.integer "nex", default: 5, null: false
     t.string "origin", null: false
     t.string "patent"
     t.integer "pre", default: 0, null: false

@@ -79,81 +79,89 @@
     </div>
   </div>
 
-<div data-controller="number-fields"
-     data-number-fields-current-Pv-value="<%= @character.current_pv %>"
-     data-number-fields-current-Pe-value="<%= @character.current_pe %>"
-     data-number-fields-current-Sanity-value="<%= @character.current_sanity %>"
+<div data-controller="status"
+     data-status-current-Pv-value="<%= @character.current_pv %>"
+     data-status-current-Pe-value="<%= @character.current_pe %>"
+     data-status-current-Sanity-value="<%= @character.current_sanity %>"
 >
   <div>
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.hidden_field :current_pv, min: 0,
       data: {
-        number_fields_target: "PV",
-        action: "archetype-selector:changed@document->number-fields#updateMaxPV"
+        status_target: "Pv",
+        action: "
+                  archetype-selector:changed@document->status#updateMaxPV
+                  exp-fields:nexChanged@document->status#updateMaxPV
+                "
       }
     %>
-    <button type="button" data-action="click->number-fields#decreaseFivePV">&lt;&lt;</button>
-    <button type="button" data-action="click->number-fields#decrementPV">&lt;</button>
-      <span data-number-fields-target="DisplayPV">
+    <button type="button" data-action="click->status#decreaseFivePV">&lt;&lt;</button>
+    <button type="button" data-action="click->status#decrementPV">&lt;</button>
+      <span data-status-target="DisplayPv">
 
       </span>
-    <button type="button" data-action="click->number-fields#incrementPV">&gt;</button>
-    <button type="button" data-action="click->number-fields#increaseFivePV">&gt;&gt;</button>
+    <button type="button" data-action="click->status#incrementPV">&gt;</button>
+    <button type="button" data-action="click->status#increaseFivePV">&gt;&gt;</button>
   </div>
 
   <div>
     <%= form.label "Pontos de Esforço: ", style: "display: block" %>
     <%= form.hidden_field :current_pe, min: 0,
       data: {
-        number_fields_target: "PE",
-        action: "archetype-selector:changed@document->number-fields#updateMaxPE"
+        status_target: "Pe",
+        action: "
+                archetype-selector:changed@document->status#updateMaxPE
+                exp-fields:nexChanged@document->status#updateMaxPE
+                "
       }
     %>
-    <button type="button" data-action="click->number-fields#decreaseFivePE">&lt;&lt;</button>
-    <button type="button" data-action="click->number-fields#decrementPE">&lt;</button>
-      <span data-number-fields-target="DisplayPE">
+    <button type="button" data-action="click->status#decreaseFivePE">&lt;&lt;</button>
+    <button type="button" data-action="click->status#decrementPE">&lt;</button>
+      <span data-status-target="DisplayPe">
 
       </span>
-    <button type="button" data-action="click->number-fields#incrementPE">&gt;</button>
-    <button type="button" data-action="click->number-fields#increaseFivePE">&gt;&gt;</button>
+    <button type="button" data-action="click->status#incrementPE">&gt;</button>
+    <button type="button" data-action="click->status#increaseFivePE">&gt;&gt;</button>
   </div>
 
   <div>
     <%= form.label "Sanidade: ", style: "display: block" %>
     <%= form.hidden_field :current_sanity, min: 0,
       data: {
-        number_fields_target: "Sanity",
-        action: "archetype-selector:changed@document->number-fields#updateMaxSanity"
+        status_target: "Sanity",
+        action: "
+                archetype-selector:changed@document->status#updateMaxSanity
+                exp-fields:nexChanged@document->status#updateMaxSanity
+                "
+
       }
     %>
-    <button type="button" data-action="click->number-fields#decreaseFiveSanity">&lt;&lt;</button>
-    <button type="button" data-action="click->number-fields#decrementSanity">&lt;</button>
-    <span data-number-fields-target="DisplaySanity">
+    <button type="button" data-action="click->status#decreaseFiveSanity">&lt;&lt;</button>
+    <button type="button" data-action="click->status#decrementSanity">&lt;</button>
+    <span data-status-target="DisplaySanity">
 
     </span>
-    <button type="button" data-action="click->number-fields#incrementSanity">&gt;</button>
-    <button type="button" data-action="click->number-fields#increaseFiveSanity">&gt;&gt;</button>
+    <button type="button" data-action="click->status#incrementSanity">&gt;</button>
+    <button type="button" data-action="click->status#increaseFiveSanity">&gt;&gt;</button>
   </div>
+</div>
 
+<div data-controller="exp-fields" data-exp-fields-current-Nex-value="<%= @character.nex %>">
   <div>
     <%= form.label "NEX (Nivel de Exposição):", style: "display: block" %>
     <%= form.hidden_field :nex, min: 0, max: 99,
       data: {
-        number_fields_target: "Nex",
+        exp_fields_target: "Nex",
         action: "
-                change->number-fields#updateMaxPV
-                change->number-fields#updateMaxPE
-                change->number-fields#updateMaxSanity
+                change->exp-fields#notifyNexChange
                 "
       }
     %>
-    <button type="button" data-action="click->number-fields#decreaseFiveNex">&lt;&lt;</button>
-    <button type="button" data-action="click->number-fields#decrementNex">&lt;</button>
-    <span data-number-fields-target="DisplayNex">
+    <button type="button" data-action="click->exp-fields#decreaseFiveNex">&lt;&lt;</button>
+    <span data-exp-fields-target="DisplayNex">
 
     </span>
-    <button type="button" data-action="click->number-fields#incrementNex">&gt;</button>
-    <button type="button" data-action="click->number-fields#increaseFiveNex">&gt;&gt;</button>
+    <button type="button" data-action="click->exp-fields#increaseFiveNex">&gt;&gt;</button>
   </div>
 
   <div>
@@ -166,6 +174,8 @@
     <%= form.number_field :prestige_points %>
   </div>
 
+</div>
+
   <div>
     <%= form.label "Elemento de afinidade:", style: "display: block" %>
     <%= form.text_field :element_affinity %>
@@ -175,7 +185,7 @@
     <%= form.label "FOR (Força):", style: "display: block" %>
     <%= form.number_field :for, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "FOR",
+        status_target: "FOR",
       }
     %>
   </div>
@@ -184,7 +194,7 @@
     <%= form.label "AGI (Agilidade):", style: "display: block" %>
     <%= form.number_field :agi, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "AGI"
+        status_target: "AGI"
       }
     %>
   </div>
@@ -193,7 +203,7 @@
     <%= form.label "INT (Inteligencia):", style: "display: block" %>
     <%= form.number_field :int, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "INT"
+        status_target: "INT"
       }
     %>
   </div>
@@ -202,8 +212,8 @@
     <%= form.label "PRE (Presença):", style: "display: block" %>
     <%= form.number_field :pre, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "PRE",
-        action: "change->number-fields#updateMaxPE"
+        status_target: "PRE",
+        action: "change->status#updateMaxPE"
       }
     %>
   </div>
@@ -212,8 +222,8 @@
     <%= form.label "VIG (Vigor):", style: "display: block" %>
     <%= form.number_field :vig, min: 0, max: @character.max_attribute_points,
       data: {
-        number_fields_target: "VIG",
-        action: "change->number-fields#updateMaxPV"
+        status_target: "VIG",
+        action: "change->status#updateMaxPV"
       }
     %>
   </div>
@@ -221,5 +231,4 @@
   <div>
     <%= form.submit "Salvar" %>
   </div>
-</div>
 <% end %>
