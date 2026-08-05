@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["Nex", "DisplayNex"]
+    static targets = ["nex", "displayNex"]
     static values = {
         currentNex: Number
     }
@@ -9,8 +9,8 @@ export default class extends Controller {
     connect(){
         this.maxNex = 99
         this.currentNex = this.currentNexValue
-        this.NexTarget.value = this.currentNex
-        this.DisplayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = this.currentNex
+        this.displayNexTarget.textContent = `${this.currentNex}%`
     }
 
     increaseFiveNex(){
@@ -19,8 +19,8 @@ export default class extends Controller {
         }else{
             this.currentNex = this.maxNex
         }
-        this.NexTarget.value = this.currentNex
-        this.DisplayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = this.currentNex
+        this.displayNexTarget.textContent = `${this.currentNex}%`
         this.notifyNexChange()
     }
 
@@ -32,8 +32,8 @@ export default class extends Controller {
         }else{
             this.currentNex = 5
         }
-        this.NexTarget.value = this.currentNex
-        this.DisplayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = this.currentNex
+        this.displayNexTarget.textContent = `${this.currentNex}%`
         this.notifyNexChange()
 
     }

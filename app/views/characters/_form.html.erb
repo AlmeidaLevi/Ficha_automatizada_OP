@@ -88,7 +88,7 @@
     <%= form.label "Pontos de Vida: ", style: "display: block" %>
     <%= form.hidden_field :current_pv, min: 0,
       data: {
-        status_target: "Pv",
+        status_target: "pv",
         action: "
                   archetype-selector:changed@document->status#updateMaxPV
                   exp-fields:nexChanged@document->status#updateMaxPV
@@ -97,7 +97,7 @@
     %>
     <button type="button" data-action="click->status#decreaseFivePV">&lt;&lt;</button>
     <button type="button" data-action="click->status#decrementPV">&lt;</button>
-      <span data-status-target="DisplayPv">
+      <span data-status-target="displayPv">
 
       </span>
     <button type="button" data-action="click->status#incrementPV">&gt;</button>
@@ -108,7 +108,7 @@
     <%= form.label "Pontos de Esforço: ", style: "display: block" %>
     <%= form.hidden_field :current_pe, min: 0,
       data: {
-        status_target: "Pe",
+        status_target: "pe",
         action: "
                 archetype-selector:changed@document->status#updateMaxPE
                 exp-fields:nexChanged@document->status#updateMaxPE
@@ -117,7 +117,7 @@
     %>
     <button type="button" data-action="click->status#decreaseFivePE">&lt;&lt;</button>
     <button type="button" data-action="click->status#decrementPE">&lt;</button>
-      <span data-status-target="DisplayPe">
+      <span data-status-target="displayPe">
 
       </span>
     <button type="button" data-action="click->status#incrementPE">&gt;</button>
@@ -128,7 +128,7 @@
     <%= form.label "Sanidade: ", style: "display: block" %>
     <%= form.hidden_field :current_sanity, min: 0,
       data: {
-        status_target: "Sanity",
+        status_target: "sanity",
         action: "
                 archetype-selector:changed@document->status#updateMaxSanity
                 exp-fields:nexChanged@document->status#updateMaxSanity
@@ -138,7 +138,7 @@
     %>
     <button type="button" data-action="click->status#decreaseFiveSanity">&lt;&lt;</button>
     <button type="button" data-action="click->status#decrementSanity">&lt;</button>
-    <span data-status-target="DisplaySanity">
+    <span data-status-target="displaySanity">
 
     </span>
     <button type="button" data-action="click->status#incrementSanity">&gt;</button>
@@ -151,14 +151,14 @@
     <%= form.label "NEX (Nivel de Exposição):", style: "display: block" %>
     <%= form.hidden_field :nex, min: 0, max: 99,
       data: {
-        exp_fields_target: "Nex",
+        exp_fields_target: "nex",
         action: "
                 change->exp-fields#notifyNexChange
                 "
       }
     %>
     <button type="button" data-action="click->exp-fields#decreaseFiveNex">&lt;&lt;</button>
-    <span data-exp-fields-target="DisplayNex">
+    <span data-exp-fields-target="displayNex">
 
     </span>
     <button type="button" data-action="click->exp-fields#increaseFiveNex">&gt;&gt;</button>

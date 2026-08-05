@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-    static targets = ["Pv", "DisplayPv", "Pe", "DisplayPe", "Sanity", "DisplaySanity"]
+    static targets = ["pv", "displayPv", "pe", "displayPe", "sanity", "displaySanity"]
     static values = {
         currentPv: Number,
         currentPe: Number,
@@ -11,21 +11,21 @@ export default class extends Controller {
     connect() {
         this.maxPv = 0
         this.currentPv = this.currentPvValue
-        this.PvTarget.value = this.currentPv
+        this.pvTarget.value = this.currentPv
 
         this.maxPE = 0
-        this.currentPE = this.currentPeValue
-        this.PeTarget.value = this.currentPE
+        this.currentPe = this.currentPeValue
+        this.peTarget.value = this.currentPe
 
         this.maxSanity = 0
         this.currentSanity = this.currentSanityValue
-        this.SanityTarget.value = this.currentSanity
+        this.sanityTarget.value = this.currentSanity
 
 
-        this.class_selector = document.getElementById("character_character_class")
-        this.vigor_field = document.getElementById("character_vig")
-        this.presenca_field = document.getElementById("character_pre")
-        this.nex_field = document.getElementById("character_nex")
+        this.classSelector = document.getElementById("character_character_class")
+        this.vigorField = document.getElementById("character_vig")
+        this.presencaField = document.getElementById("character_pre")
+        this.nexField = document.getElementById("character_nex")
 
         this.updateMaxPV()
         this.updateMaxPE()
@@ -33,36 +33,36 @@ export default class extends Controller {
     }
 
     updateMaxPV(){
-        let current_class = this.class_selector.value
-        let nex = Number(this.nex_field.value)
-        let vigor = Number(this.vigor_field.value)
+        let currentClass = this.classSelector.value
+        let nex = Number(this.nexField.value)
+        let vigor = Number(this.vigorField.value)
         console.log(this.currentPv)
         console.log(this.maxPv)
         if (nex == 99){
             nex += 1
         }
-        if (current_class == "combatente"){
+        if (currentClass == "combatente"){
             this.maxPv = 20 + vigor
             this.maxPv += (Math.floor(nex/5)-1) * (4 + vigor)
-        }else if (current_class == "especialista"){
+        }else if (currentClass == "especialista"){
             this.maxPv = 16 + vigor
             this.maxPv += (Math.floor(nex/5)-1) * (3 + vigor)
-        }else if (current_class == "ocultista"){
+        }else if (currentClass == "ocultista"){
             this.maxPv = 12 + vigor
             this.maxPv += (Math.floor(nex/5)-1) * (2 + vigor)
         }
         if(this.currentPv > this.maxPv){
             this.currentPv = this.maxPv
-            this.PvTarget.value = this.currentPv
+            this.pvTarget.value = this.currentPv
         }
-        this.DisplayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
     }
 
     incrementPV(){
         if (this.currentPv < this.maxPv){
             this.currentPv += 1
-            this.PvTarget.value = this.currentPv
-            this.DisplayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+            this.pvTarget.value = this.currentPv
+            this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
         }
     }
 
@@ -72,15 +72,15 @@ export default class extends Controller {
         }else{
             this.currentPv = this.maxPv
         }
-        this.PvTarget.value = this.currentPv
-        this.DisplayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.pvTarget.value = this.currentPv
+        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
     }
 
     decrementPV(){
         if(this.currentPv > 0){
             this.currentPv -= 1
-            this.PvTarget.value = this.currentPv
-            this.DisplayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+            this.pvTarget.value = this.currentPv
+            this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
         }
     }
 
@@ -90,98 +90,98 @@ export default class extends Controller {
         }else{
             this.currentPv = 0
         }
-        this.PvTarget.value = this.currentPv
-        this.DisplayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.pvTarget.value = this.currentPv
+        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
     }
 
     updateMaxPE(){
-        let current_class = this.class_selector.value
-        let nex = Number(this.nex_field.value)
-        let presenca = Number(this.presenca_field.value)
+        let currentClass = this.classSelector.value
+        let nex = Number(this.nexField.value)
+        let presenca = Number(this.presencaField.value)
         if(nex == 99){
             nex += 1
         }
-        if(current_class == "combatente"){
+        if(currentClass == "combatente"){
             this.maxPE = 2 + presenca
             this.maxPE += (Math.floor(nex/5)-1) * (2 + presenca)
-        }else if(current_class == "especialista"){
+        }else if(currentClass == "especialista"){
             this.maxPE = 3 + presenca
             this.maxPE += (Math.floor(nex/5)-1) * (3 + presenca)
-        }else if(current_class == "ocultista"){
+        }else if(currentClass == "ocultista"){
             this.maxPE = 4 + presenca
             this.maxPE += (Math.floor(nex/5)-1) * (4 + presenca)
         }
-        if(this.currentPE > this.maxPE){
-            this.currentPE = this.maxPE
-            this.PeTarget.value = this.currentPv
+        if(this.currentPe > this.maxPE){
+            this.currentPe = this.maxPE
+            this.peTarget.value = this.currentPv
         }
-        this.DisplayPeTarget.textContent = `${this.currentPE}/${this.maxPE}`
+        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
     }
 
     incrementPE(){
-        if(this.currentPE < this.maxPE){
-            this.currentPE += 1
-            this.PeTarget.value = this.currentPE
-            this.DisplayPeTarget.textContent = `${this.currentPE}/${this.maxPE}`
+        if(this.currentPe < this.maxPE){
+            this.currentPe += 1
+            this.peTarget.value = this.currentPe
+            this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
         }
     }
 
     increaseFivePE(){
-        if(this.currentPE + 5 <= this.maxPE){
-            this.currentPE += 5
+        if(this.currentPe + 5 <= this.maxPE){
+            this.currentPe += 5
         }else{
-            this.currentPE = this.maxPE
+            this.currentPe = this.maxPE
         }
-        this.PeTarget.value = this.currentPE
-        this.DisplayPeTarget.textContent = `${this.currentPE}/${this.maxPE}`
+        this.peTarget.value = this.currentPe
+        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
     }
 
     decrementPE(){
-        if(this.currentPE > 0){
-            this.currentPE -= 1
-            this.PeTarget.value = this.currentPE
-            this.DisplayPeTarget.textContent = `${this.currentPE}/${this.maxPE}`
+        if(this.currentPe > 0){
+            this.currentPe -= 1
+            this.peTarget.value = this.currentPe
+            this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
         }
     }
 
     decreaseFivePE(){
-        if(this.currentPE - 5 >= 0){
-            this.currentPE -= 5
+        if(this.currentPe - 5 >= 0){
+            this.currentPe -= 5
         }else{
-            this.currentPE = 0
+            this.currentPe = 0
         }
-        this.PeTarget.value = this.currentPE
-        this.DisplayPeTarget.textContent = `${this.currentPE}/${this.maxPE}`
+        this.peTarget.value = this.currentPe
+        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
     }
 
     updateMaxSanity(){
-        let current_class = this.class_selector.value
-        let nex = Number(this.nex_field.value)
+        let currentClass = this.classSelector.value
+        let nex = Number(this.nexField.value)
         if(nex == 99){
             nex += 1
         }
-        if(current_class == "combatente"){
+        if(currentClass == "combatente"){
             this.maxSanity = 12
             this.maxSanity += (Math.floor(nex/5)-1) * 3
-        }else if(current_class == "especialista"){
+        }else if(currentClass == "especialista"){
             this.maxSanity = 16
             this.maxSanity += (Math.floor(nex/5)-1) * 4
-        }else if(current_class == "ocultista"){
+        }else if(currentClass == "ocultista"){
             this.maxSanity = 20
             this.maxSanity += (Math.floor(nex/5)-1) * 5
         }
         if(this.currentSanity > this.maxSanity){
             this.currentSanity = this.maxSanity
-            this.SanityTarget.value = this.currentSanity
+            this.sanityTarget.value = this.currentSanity
         }
-        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
     }
 
     incrementSanity(){
         if(this.currentSanity < this.maxSanity){
             this.currentSanity += 1
-            this.SanityTarget.value = this.currentSanity
-            this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+            this.sanityTarget.value = this.currentSanity
+            this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
         }
     }
 
@@ -191,15 +191,15 @@ export default class extends Controller {
         }else{
             this.currentSanity = this.maxSanity
         }
-        this.SanityTarget.value = this.currentSanity
-        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.sanityTarget.value = this.currentSanity
+        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
     }
 
     decrementSanity(){
         if(this.currentSanity > 0){
             this.currentSanity -= 1
-            this.SanityTarget.value = this.currentSanity
-            this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+            this.sanityTarget.value = this.currentSanity
+            this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
         }
     }
 
@@ -209,8 +209,8 @@ export default class extends Controller {
         }else{
             this.currentSanity = 0
         }
-        this.SanityTarget.value = this.currentSanity
-        this.DisplaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.sanityTarget.value = this.currentSanity
+        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
     }
 
 }
