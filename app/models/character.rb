@@ -58,6 +58,14 @@ class Character < ApplicationRecord
     lamina_paranormal: "lamina_paranormal"
   }
 
+  enum :patent, {
+    recruta: "recruta",
+    operador: "operador",
+    agente_especial: "agente_especial",
+    oficial_de_operacoes: "oficial_de_operacoes",
+    agente_de_elite: "agente_de_elite"
+  }
+
   belongs_to :user
 
   validate :archetype_matches_character_class
