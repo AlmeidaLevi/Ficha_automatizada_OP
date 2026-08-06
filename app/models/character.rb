@@ -66,6 +66,14 @@ class Character < ApplicationRecord
     agente_de_elite: "agente_de_elite"
   }
 
+  enum :element_affinity, {
+    nenhum: "nenhum",
+    sangue: "sangue",
+    conhecimento: "conhecimento",
+    morte: "morte",
+    energia: "energia"
+  }
+
   belongs_to :user
 
   validate :archetype_matches_character_class
