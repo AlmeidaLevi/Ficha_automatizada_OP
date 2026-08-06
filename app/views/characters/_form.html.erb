@@ -213,7 +213,15 @@
 
   <div>
     <%= form.label "Elemento de afinidade:", style: "display: block" %>
-    <%= form.text_field :element_affinity %>
+    <%= form.select :element_affinity,
+      [
+        ["Nenhum", "nenhum"],
+        ["Sangue", "sangue"],
+        ["Morte", "morte"],
+        ["Conhecimento", "conhecimento"],
+        ["Energia", "energia"]
+      ]
+    %>
   </div>
 
   <div>
