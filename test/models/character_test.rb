@@ -39,4 +39,18 @@ class CharacterTest < ActiveSupport::TestCase
     character.archetype = "infiltrador"
     assert character.valid?
   end
+
+  test "Invalid patent raises an error" do
+    character = characters(:one)
+    assert_raises(ArgumentError) do
+      character.patent = "Non existent patent"
+    end
+  end
+
+  test "Invalid element affinity raises an error" do
+    character = characters(:one)
+    assert_raises(ArgumentError) do
+      character.element_affinity = "Non existent element affinity"
+    end
+  end
 end
