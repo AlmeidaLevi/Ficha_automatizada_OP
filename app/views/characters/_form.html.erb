@@ -92,6 +92,7 @@
         action: "
                   archetype-selector:changed@document->status#updateMaxPV
                   exp-fields:nexChanged@document->status#updateMaxPV
+                  attributes:vigChanged@document->status#updateMaxPV
                 "
       }
     %>
@@ -112,6 +113,7 @@
         action: "
                 archetype-selector:changed@document->status#updateMaxPE
                 exp-fields:nexChanged@document->status#updateMaxPE
+                attributes:preChanged@document->status#updateMaxPE
                 "
       }
     %>
@@ -224,53 +226,72 @@
     %>
   </div>
 
+<div data-controller="attributes">
   <div>
     <%= form.label "FOR (Força):", style: "display: block" %>
-    <%= form.number_field :for, min: 0, max: @character.max_attribute_points,
+    <%= form.number_field :for, min: -99, max: 99,
       data: {
         status_target: "FOR",
+        action: "
+                  change->attributes#notifyForChange
+                  change->attributes#filterAttributeField
+                "
       }
     %>
   </div>
 
   <div>
     <%= form.label "AGI (Agilidade):", style: "display: block" %>
-    <%= form.number_field :agi, min: 0, max: @character.max_attribute_points,
+    <%= form.number_field :agi, min: -99, max: 99,
       data: {
-        status_target: "AGI"
+        status_target: "AGI",
+        action: "
+                  change->attributes#notifyAgiChange
+                  change->attributes#filterAttributeField
+                "
       }
     %>
   </div>
 
   <div>
     <%= form.label "INT (Inteligencia):", style: "display: block" %>
-    <%= form.number_field :int, min: 0, max: @character.max_attribute_points,
+    <%= form.number_field :int, min: -99, max: 99,
       data: {
-        status_target: "INT"
+        status_target: "INT",
+        action: "
+                  change->attributes#notifyIntChange
+                  change->attributes#filterAttributeField
+                "
       }
     %>
   </div>
 
   <div>
     <%= form.label "PRE (Presença):", style: "display: block" %>
-    <%= form.number_field :pre, min: 0, max: @character.max_attribute_points,
+    <%= form.number_field :pre, min: -99, max: 99,
       data: {
         status_target: "PRE",
-        action: "change->status#updateMaxPE"
+        action: "
+                  change->attributes#notifyPreChange
+                  change->attributes#filterAttributeField
+                "
       }
     %>
   </div>
 
   <div>
     <%= form.label "VIG (Vigor):", style: "display: block" %>
-    <%= form.number_field :vig, min: 0, max: @character.max_attribute_points,
+    <%= form.number_field :vig, min: -99, max: 99,
       data: {
         status_target: "VIG",
-        action: "change->status#updateMaxPV"
+        action: "
+                  change->attributes#notifyVigChange
+                  change->attributes#filterAttributeField
+                "
       }
     %>
   </div>
-
+</div>
   <div>
     <%= form.submit "Salvar" %>
   </div>
