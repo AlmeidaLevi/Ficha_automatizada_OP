@@ -9,9 +9,8 @@ export default class extends Controller {
 
     connect(){
         this.maxNex = 99
-        this.currentNex = this.currentNexValue
-        this.nexTarget.value = this.currentNex
-        this.displayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = this.currentNexValue
+        this.displayNexTarget.textContent = `${this.currentNexValue}%`
 
         this.prestigePointsTarget.value = this.prestigePointsValue
         this.displayPrestigePointsTarget.textContent = this.prestigePointsValue
@@ -19,26 +18,28 @@ export default class extends Controller {
     }
 
     increaseFiveNex(){
-        if(this.currentNex + 5 <= this.maxNex){
-            this.currentNex += 5
+        let currentNex = Number(this.nexTarget.value)
+        if(currentNex + 5 <= this.maxNex){
+            currentNex += 5
         }else{
-            this.currentNex = this.maxNex
+            currentNex = this.maxNex
         }
-        this.nexTarget.value = this.currentNex
-        this.displayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = currentNex
+        this.displayNexTarget.textContent = `${this.nexTarget.value}%`
         this.notifyNexChange()
     }
 
     decreaseFiveNex(){
-        if(this.currentNex == 99){
-            this.currentNex = 95
-        }else if(this.currentNex - 5 >= 5){
-            this.currentNex -= 5
+        let currentNex = Number(this.nexTarget.value)
+        if(currentNex == 99){
+            currentNex = 95
+        }else if(currentNex - 5 >= 5){
+            currentNex -= 5
         }else{
-            this.currentNex = 5
+            currentNex = 5
         }
-        this.nexTarget.value = this.currentNex
-        this.displayNexTarget.textContent = `${this.currentNex}%`
+        this.nexTarget.value = currentNex
+        this.displayNexTarget.textContent = `${this.nexTarget.value}%`
         this.notifyNexChange()
 
     }

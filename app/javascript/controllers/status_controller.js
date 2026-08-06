@@ -10,16 +10,13 @@ export default class extends Controller {
 
     connect() {
         this.maxPv = 0
-        this.currentPv = this.currentPvValue
-        this.pvTarget.value = this.currentPv
+        this.pvTarget.value = this.currentPvValue
 
         this.maxPE = 0
-        this.currentPe = this.currentPeValue
-        this.peTarget.value = this.currentPe
+        this.peTarget.value = this.currentPeValue
 
         this.maxSanity = 0
-        this.currentSanity = this.currentSanityValue
-        this.sanityTarget.value = this.currentSanity
+        this.sanityTarget.value = this.currentSanityValue
 
 
         this.classSelector = document.getElementById("character_character_class")
@@ -36,8 +33,6 @@ export default class extends Controller {
         let currentClass = this.classSelector.value
         let nex = Number(this.nexField.value)
         let vigor = Number(this.vigorField.value)
-        console.log(this.currentPv)
-        console.log(this.maxPv)
         if (nex == 99){
             nex += 1
         }
@@ -51,47 +46,51 @@ export default class extends Controller {
             this.maxPv = 12 + vigor
             this.maxPv += (Math.floor(nex/5)-1) * (2 + vigor)
         }
-        if(this.currentPv > this.maxPv){
-            this.currentPv = this.maxPv
-            this.pvTarget.value = this.currentPv
+        if(Number(this.pvTarget.value) > this.maxPv){
+            this.pvTarget.value = this.maxPv
         }
-        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.displayPvTarget.textContent = `${this.pvTarget.value}/${this.maxPv}`
     }
 
     incrementPV(){
-        if (this.currentPv < this.maxPv){
-            this.currentPv += 1
-            this.pvTarget.value = this.currentPv
-            this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        let currentPV = Number(this.pvTarget.value)
+        if (currentPV < this.maxPv){
+            currentPV += 1
+            this.pvTarget.value = currentPV
+            this.displayPvTarget.textContent = `${this.pvTarget.value}/${this.maxPv}`
         }
     }
 
     increaseFivePV(){
-        if (this.currentPv + 5 <= this.maxPv){
-            this.currentPv += 5
+        let currentPV = Number(this.pvTarget.value)
+
+        if (currentPV + 5 <= this.maxPv){
+            currentPV += 5
         }else{
-            this.currentPv = this.maxPv
+            currentPV = this.maxPv
         }
-        this.pvTarget.value = this.currentPv
-        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.pvTarget.value = currentPV
+        this.displayPvTarget.textContent = `${this.pvTarget.value}/${this.maxPv}`
     }
 
     decrementPV(){
-        if(this.currentPv > 0){
-            this.currentPv -= 1
-            this.pvTarget.value = this.currentPv
-            this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        let currentPV = Number(this.pvTarget.value)
+        if(currentPV > 0){
+            currentPV -= 1
+            this.pvTarget.value = currentPV
+            this.displayPvTarget.textContent = `${this.pvTarget.value}/${this.maxPv}`
         }
     }
 
     decreaseFivePV(){
-        if (this.currentPv - 5 >= 0){
-            this.currentPv -= 5
+        let currentPV = Number(this.pvTarget.value)
+        if (currentPV - 5 >= 0){
+            currentPV -= 5
         }else{
-            this.currentPv = 0
+            currentPV = 0
         }
-        this.pvTarget.value = this.currentPv
-        this.displayPvTarget.textContent = `${this.currentPv}/${this.maxPv}`
+        this.pvTarget.value = currentPV
+        this.displayPvTarget.textContent = `${this.pvTarget.value}/${this.maxPv}`
     }
 
     updateMaxPE(){
@@ -111,47 +110,50 @@ export default class extends Controller {
             this.maxPE = 4 + presenca
             this.maxPE += (Math.floor(nex/5)-1) * (4 + presenca)
         }
-        if(this.currentPe > this.maxPE){
-            this.currentPe = this.maxPE
-            this.peTarget.value = this.currentPv
+        if(Number(this.peTarget.value) > this.maxPE){
+            this.peTarget.value = this.maxPE
         }
-        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
+        this.displayPeTarget.textContent = `${this.peTarget.value}/${this.maxPE}`
     }
 
     incrementPE(){
-        if(this.currentPe < this.maxPE){
-            this.currentPe += 1
-            this.peTarget.value = this.currentPe
-            this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
+        let currentPe = Number(this.peTarget.value)
+        if(currentPe < this.maxPE){
+            currentPe += 1
+            this.peTarget.value = currentPe
+            this.displayPeTarget.textContent = `${this.peTarget.value}/${this.maxPE}`
         }
     }
 
     increaseFivePE(){
-        if(this.currentPe + 5 <= this.maxPE){
-            this.currentPe += 5
+        let currentPe = Number(this.peTarget.value)
+        if(currentPe + 5 <= this.maxPE){
+            currentPe += 5
         }else{
-            this.currentPe = this.maxPE
+            currentPe = this.maxPE
         }
-        this.peTarget.value = this.currentPe
-        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
+        this.peTarget.value = currentPe
+        this.displayPeTarget.textContent = `${this.peTarget.value}/${this.maxPE}`
     }
 
     decrementPE(){
-        if(this.currentPe > 0){
-            this.currentPe -= 1
-            this.peTarget.value = this.currentPe
-            this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
+        let currentPe = Number(this.peTarget.value)
+        if(currentPe > 0){
+            currentPe -= 1
+            this.peTarget.value = currentPe
+            this.displayPeTarget.textContent = `${currentPe}/${this.maxPE}`
         }
     }
 
     decreaseFivePE(){
-        if(this.currentPe - 5 >= 0){
-            this.currentPe -= 5
+        let currentPe = Number(this.peTarget.value)
+        if(currentPe - 5 >= 0){
+            currentPe -= 5
         }else{
-            this.currentPe = 0
+            currentPe = 0
         }
-        this.peTarget.value = this.currentPe
-        this.displayPeTarget.textContent = `${this.currentPe}/${this.maxPE}`
+        this.peTarget.value = currentPe
+        this.displayPeTarget.textContent = `${currentPe}/${this.maxPE}`
     }
 
     updateMaxSanity(){
@@ -170,47 +172,50 @@ export default class extends Controller {
             this.maxSanity = 20
             this.maxSanity += (Math.floor(nex/5)-1) * 5
         }
-        if(this.currentSanity > this.maxSanity){
-            this.currentSanity = this.maxSanity
-            this.sanityTarget.value = this.currentSanity
+        if(Number(this.sanityTarget.value) > this.maxSanity){
+            this.sanityTarget.value = this.maxSanity
         }
-        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.displaySanityTarget.textContent = `${this.sanityTarget.value}/${this.maxSanity}`
     }
 
     incrementSanity(){
-        if(this.currentSanity < this.maxSanity){
-            this.currentSanity += 1
-            this.sanityTarget.value = this.currentSanity
-            this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        let currentSanity = Number(this.sanityTarget.value)
+        if(currentSanity < this.maxSanity){
+            currentSanity += 1
+            this.sanityTarget.value = currentSanity
+            this.displaySanityTarget.textContent = `${this.sanityTarget.value}/${this.maxSanity}`
         }
     }
 
     increaseFiveSanity(){
-        if(this.currentSanity + 5 <= this.maxSanity){
-            this.currentSanity += 5
+        let currentSanity = Number(this.sanityTarget.value)
+        if(currentSanity + 5 <= this.maxSanity){
+            currentSanity += 5
         }else{
-            this.currentSanity = this.maxSanity
+            currentSanity = this.maxSanity
         }
-        this.sanityTarget.value = this.currentSanity
-        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.sanityTarget.value = currentSanity
+        this.displaySanityTarget.textContent = `${this.sanityTarget.value}/${this.maxSanity}`
     }
 
     decrementSanity(){
-        if(this.currentSanity > 0){
-            this.currentSanity -= 1
-            this.sanityTarget.value = this.currentSanity
-            this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        let currentSanity = Number(this.sanityTarget.value)
+        if(currentSanity > 0){
+            currentSanity -= 1
+            this.sanityTarget.value = currentSanity
+            this.displaySanityTarget.textContent = `${this.sanityTarget.value}/${this.maxSanity}`
         }
     }
 
     decreaseFiveSanity(){
-        if(this.currentSanity - 5 >= 0){
-            this.currentSanity -= 5
+        let currentSanity = Number(this.sanityTarget.value)
+        if(currentSanity - 5 >= 0){
+            currentSanity -= 5
         }else{
-            this.currentSanity = 0
+            currentSanity = 0
         }
-        this.sanityTarget.value = this.currentSanity
-        this.displaySanityTarget.textContent = `${this.currentSanity}/${this.maxSanity}`
+        this.sanityTarget.value = currentSanity
+        this.displaySanityTarget.textContent = `${this.sanityTarget.value}/${this.maxSanity}`
     }
 
 }
