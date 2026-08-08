@@ -11,9 +11,14 @@
     </div>
   <% end %>
 
+<div data-controller="autosave" data-autosave-save-Url-value="<%= character_path(@character) %>">
   <div>
     <%= form.label "Nome do personagem:", style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name,
+      data: {
+        action: "change->autosave#save"
+      }
+    %>
   </div>
 
   <div>
@@ -45,7 +50,12 @@
       ["Trambiqueiro", "trambiqueiro"],
       ["Universitário", "universitario"],
       ["Vítima", "vitima"]
-    ] %>
+    ],
+    {},
+    data: {
+      action: "change->autosave#save"
+    }
+    %>
   </div>
 
   <div data-controller="archetype-selector">
@@ -59,9 +69,11 @@
         {},
         data: {
           archetype_selector_target: "characterClass",
+          autosave_target: "class",
           action: "
                   change->archetype-selector#updateArchetype
                   change->archetype-selector#notifyClassChange
+                  change->autosave#saveClassArchetype
                   "
         }
       %>
@@ -73,7 +85,9 @@
         [],
         {},
         data: {
-          archetype_selector_target: "archetype"
+          archetype_selector_target: "archetype",
+          autosave_target: "archetype",
+          action: "change->autosave#save"
         }
       %>
     </div>
@@ -93,6 +107,7 @@
                   archetype-selector:changed@document->status#updateMaxPV
                   exp-fields:nexChanged@document->status#updateMaxPV
                   attributes:vigChanged@document->status#updateMaxPV
+                  change->autosave#save
                 "
       }
     %>
@@ -114,6 +129,7 @@
                 archetype-selector:changed@document->status#updateMaxPE
                 exp-fields:nexChanged@document->status#updateMaxPE
                 attributes:preChanged@document->status#updateMaxPE
+                change->autosave#save
                 "
       }
     %>
@@ -134,6 +150,7 @@
         action: "
                 archetype-selector:changed@document->status#updateMaxSanity
                 exp-fields:nexChanged@document->status#updateMaxSanity
+                change->autosave#save
                 "
 
       }
@@ -159,6 +176,7 @@
         exp_fields_target: "nex",
         action: "
                 change->exp-fields#notifyNexChange
+                change->autosave#save
                 "
       }
     %>
@@ -173,7 +191,8 @@
     <%= form.label "Patente:", style: "display: block" %>
     <%= form.hidden_field :patent,
       data: {
-        exp_fields_target: "patent"
+        exp_fields_target: "patent",
+        action: "change->autosave#save"
       }
     %>
     <span data-exp-fields-target="displayPatent">
@@ -185,7 +204,8 @@
     <%= form.label "Pontos de prestigio:", style: "display: block" %>
     <%= form.hidden_field :prestige_points,
       data: {
-        exp_fields_target: "prestigePoints"
+        exp_fields_target: "prestigePoints",
+        action: "change->autosave#save"
       }
     %>
     <span data-exp-fields-target="displayPrestigePoints">
@@ -222,7 +242,11 @@
         ["Morte", "morte"],
         ["Conhecimento", "conhecimento"],
         ["Energia", "energia"]
-      ]
+      ],
+      {},
+      data: {
+        action: "change->autosave#save"
+      }
     %>
   </div>
 
@@ -235,6 +259,7 @@
         action: "
                   change->attributes#notifyForChange
                   change->attributes#filterAttributeField
+                  change->autosave#save
                 "
       }
     %>
@@ -248,6 +273,7 @@
         action: "
                   change->attributes#notifyAgiChange
                   change->attributes#filterAttributeField
+                  change->autosave#save
                 "
       }
     %>
@@ -261,6 +287,7 @@
         action: "
                   change->attributes#notifyIntChange
                   change->attributes#filterAttributeField
+                  change->autosave#save
                 "
       }
     %>
@@ -274,6 +301,7 @@
         action: "
                   change->attributes#notifyPreChange
                   change->attributes#filterAttributeField
+                  change->autosave#save
                 "
       }
     %>
@@ -287,12 +315,12 @@
         action: "
                   change->attributes#notifyVigChange
                   change->attributes#filterAttributeField
+                  change->autosave#save
                 "
       }
     %>
   </div>
 </div>
-  <div>
-    <%= form.submit "Salvar" %>
-  </div>
+
+</div>
 <% end %>
