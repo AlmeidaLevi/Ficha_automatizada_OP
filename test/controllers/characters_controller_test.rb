@@ -11,9 +11,12 @@ class CharactersControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get new" do
-    get new_character_url
-    assert_response :success
+  test "should redirect to edit character" do
+    assert_difference("Character.count", 1) do
+      get new_character_url
+    end
+
+    assert_redirected_to edit_character_url(Character.last)
   end
 
   test "should create character" do

@@ -8,7 +8,16 @@ class CharactersController < ApplicationController
 
   # GET /characters/new
   def new
-    @character = Character.new
+    @character = Current.user.characters.create!(
+      character_class: "combatente",
+      archetype: "aniquilador",
+      patent: "recruta",
+      element_affinity: "nenhum",
+      name: "Nome do personagem",
+      origin: "academico"
+    )
+
+    redirect_to edit_character_path(@character)
   end
 
   # GET /characters/1/edit
@@ -34,8 +43,8 @@ class CharactersController < ApplicationController
   def update
     respond_to do |format|
       if @character.update(character_params)
-        format.html { redirect_to root_path, notice: "Character was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @character }
+        format.html { redirect_to root_path, status: :see_other }
+        format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @character.errors, status: :unprocessable_content }
