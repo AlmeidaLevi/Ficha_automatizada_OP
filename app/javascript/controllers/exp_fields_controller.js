@@ -17,31 +17,33 @@ export default class extends Controller {
         this.setPatent()
     }
 
+    modifyNex(value){
+        const newValue = Number(this.nexTarget.value) + value
+        this.nexTarget.value = newValue
+        this.displayNexTarget.textContent = `${newValue}%`
+        this.nexTarget.dispatchEvent(
+          new Event("change", { bubbles: true })
+        )
+    }
+
     increaseFiveNex(){
         let currentNex = Number(this.nexTarget.value)
         if(currentNex + 5 <= this.maxNex){
-            currentNex += 5
+            this.modifyNex(5)
         }else{
-            currentNex = this.maxNex
+            this.modifyNex(this.maxNex - currentNex)
         }
-        this.nexTarget.value = currentNex
-        this.displayNexTarget.textContent = `${this.nexTarget.value}%`
-        this.notifyNexChange()
     }
 
     decreaseFiveNex(){
         let currentNex = Number(this.nexTarget.value)
         if(currentNex == 99){
-            currentNex = 95
+            this.modifyNex(-4) // 99 - 4 = 95
         }else if(currentNex - 5 >= 5){
-            currentNex -= 5
+            this.modifyNex(-5)
         }else{
-            currentNex = 5
+            this.modifyNex(-currentNex + 5)
         }
-        this.nexTarget.value = currentNex
-        this.displayNexTarget.textContent = `${this.nexTarget.value}%`
-        this.notifyNexChange()
-
     }
 
     notifyNexChange(){
@@ -77,27 +79,30 @@ export default class extends Controller {
         }
     }
 
-    updatePrestigePoints(value){
+    modifyPrestigePoints(value){
         const newValue = Number(this.prestigePointsTarget.value) + value
 
         this.prestigePointsTarget.value = newValue
         this.displayPrestigePointsTarget.textContent = newValue
         this.setPatent()
+        this.prestigePointsTarget.dispatchEvent(
+          new Event("change", { bubbles: true })
+        )
     }
 
     increaseTenPoints(){
-        this.updatePrestigePoints(10)
+        this.modifyPrestigePoints(10)
     }
 
     increaseTwoPoints(){
-        this.updatePrestigePoints(2)
+        this.modifyPrestigePoints(2)
     }
 
     decreaseTwoPoints(){
-        this.updatePrestigePoints(-2)
+        this.modifyPrestigePoints(-2)
     }
 
     decreaseFivePoints(){
-        this.updatePrestigePoints(-5)
+        this.modifyPrestigePoints(-5)
     }
 }
