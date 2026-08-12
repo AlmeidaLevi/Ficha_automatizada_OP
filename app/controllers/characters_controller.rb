@@ -8,6 +8,14 @@ class CharactersController < ApplicationController
 
   # GET /characters/new
   def new
+  end
+
+  # GET /characters/1/edit
+  def edit
+  end
+
+  # POST /characters or /characters.json
+  def create
     @character = Current.user.characters.create!(
       character_class: "combatente",
       archetype: "aniquilador",
@@ -18,25 +26,6 @@ class CharactersController < ApplicationController
     )
 
     redirect_to edit_character_path(@character)
-  end
-
-  # GET /characters/1/edit
-  def edit
-  end
-
-  # POST /characters or /characters.json
-  def create
-    @character = Current.user.characters.new(character_params)
-
-    respond_to do |format|
-      if @character.save
-        format.html { redirect_to root_path, notice: "Character was successfully created." }
-        format.json { render :show, status: :created, location: @character }
-      else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @character.errors, status: :unprocessable_content }
-      end
-    end
   end
 
   # PATCH/PUT /characters/1 or /characters/1.json
