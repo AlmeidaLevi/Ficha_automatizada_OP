@@ -75,8 +75,11 @@ class Character < ApplicationRecord
   }
 
   belongs_to :user
+  has_many :character_skills, dependent: :destroy
+  has_many :skills, through: :character_skills
 
   validate :archetype_matches_character_class
+  after_create :create_default_skills
 
   def max_attribute_points
     if nex < 20
@@ -93,6 +96,15 @@ class Character < ApplicationRecord
 
       unless ARCHETYPES_BY_CLASS[character_class].include?(archetype)
         errors.add(:archetype, "is not valid for #{character_class}")
+      end
+    end
+
+    def create_default_skills
+      Skill.find_each do |skill|
+        character_skills.create!(
+          skill: skill,
+          training_lv: :destreinado
+        )
       end
     end
 end

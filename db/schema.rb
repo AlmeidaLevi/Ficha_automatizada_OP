@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_07_17_223349) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_13_230454) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "character_skills", force: :cascade do |t|
+    t.bigint "character_id", null: false
+    t.datetime "created_at", null: false
+    t.bigint "skill_id", null: false
+    t.integer "training_lv"
+    t.datetime "updated_at", null: false
+    t.index ["character_id", "skill_id"], name: "index_character_skills_on_character_id_and_skill_id", unique: true
+    t.index ["character_id"], name: "index_character_skills_on_character_id"
+    t.index ["skill_id"], name: "index_character_skills_on_skill_id"
+  end
 
   create_table "characters", force: :cascade do |t|
     t.integer "agi", default: 0, null: false
@@ -46,6 +57,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_17_223349) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "atribute", default: "FOR", null: false
+    t.datetime "created_at", null: false
+    t.string "name", default: "skill", null: false
+    t.boolean "treined_only", default: false, null: false
+    t.datetime "updated_at", null: false
+    t.boolean "weight_penality", default: false, null: false
+    t.index ["name"], name: "index_skills_on_name", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "email_address", null: false
@@ -55,6 +76,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_07_17_223349) do
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 
+  add_foreign_key "character_skills", "characters"
+  add_foreign_key "character_skills", "skills"
   add_foreign_key "characters", "users"
   add_foreign_key "sessions", "users"
 end

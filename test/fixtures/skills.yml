@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: Diplomacia
+  atribute: pre
+  treined_only: false
+  weight_penality: false
+
+two:
+  name: Iniciativa
+  atribute: agi
+  treined_only: false
+  weight_penality: false
+
+luta:
+  name: Luta
+  atribute: for
+  treined_only: false
+  weight_penality: false
+
+reflexos:
+  name: Reflexos
+  atribute: agi
+  treined_only: false
+  weight_penality: false
